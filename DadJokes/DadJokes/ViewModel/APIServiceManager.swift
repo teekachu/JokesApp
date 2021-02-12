@@ -13,19 +13,17 @@ class APIServiceManager {
     static let shared = APIServiceManager()
     private let baseURL = "https://dad-jokes.p.rapidapi.com"
     
-    let headers = [
-        "x-rapidapi-key": "be6799ce2cmsh9aa44d9c44c0470p1d4553jsn36e752cd40ee",
-        "x-rapidapi-host": "joke3.p.rapidapi.com"
-    ]
-    
     // MARK: - Lifecycle
-    public init() {}
-    
+    private init() {}
     
     // MARK: - Privates
-    public func getJokes(completion: @escaping (Result<Any, CustomError>) -> Void){
+    public func getJokes(completion: @escaping (Result<String, CustomError>) -> Void){
         
-        // 1. SPECIFY HEADER - let headers
+        // 1. SPECIFY HEADER
+        let headers = [
+            "x-rapidapi-key": "be6799ce2cmsh9aa44d9c44c0470p1d4553jsn36e752cd40ee",
+            "x-rapidapi-host": "joke3.p.rapidapi.com"
+        ]
         
         // 2. SPECIFY BODY - n/a
         
@@ -33,9 +31,11 @@ class APIServiceManager {
         let endpoint = "https://joke3.p.rapidapi.com/v1/joke"
         
         // URL REQUEST
-        let request = NSMutableURLRequest(url: NSURL(string: endpoint)! as URL,
-                                          cachePolicy: .useProtocolCachePolicy,
-                                          timeoutInterval: 10.0)
+        var request = URLRequest(url: URL(string: endpoint)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
+        
+        //        let request = NSMutableURLRequest(url: NSURL(string: endpoint)! as URL,
+        //                                          cachePolicy: .useProtocolCachePolicy,
+        //                                          timeoutInterval: 10.0)
         
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
@@ -44,7 +44,7 @@ class APIServiceManager {
         let session = URLSession.shared
         
         // CREATE DATA TASK
-        let dataTask = session.dataTask(with: request as URLRequest) { (data, response, error) in
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
             // handle error
             
             if error != nil && data != nil {
@@ -56,15 +56,15 @@ class APIServiceManager {
                 
                 do {
                     // simple way
-                    let dictionary = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String:Any]
-//                    print(dictionary)
-//                    print(dictionary?["content"])
+                    let _ = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String:Any]
+                    //                    print(dictionary)
+                    //                    print(dictionary?["content"])
                     
                     let decodable = try JSONDecoder().decode(Joke.self, from: data!)
-                    print(decodable.content)
+                    //                    print(decodable.content)
                     
-                
-//                    completion(.success(dictionary?["content"]))
+                    //                    completion(.success(dictionary?["content"]))
+                    completion(.success(decodable.content))
                     
                 } catch {
                     print(error.localizedDescription)

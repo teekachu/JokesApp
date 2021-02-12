@@ -15,9 +15,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var labelStackView: UIStackView!
     
     @IBAction func moreJokesTapped(_ sender: Any) {
-        print("show me more")
+        makeAPICall()
     }
-    
     
     // MARK: - Properties
     
@@ -25,31 +24,44 @@ class MainViewController: UIViewController {
         "x-rapidapi-key": "be6799ce2cmsh9aa44d9c44c0470p1d4553jsn36e752cd40ee",
         "x-rapidapi-host": "joke3.p.rapidapi.com"
     ]
-    let APIservice = APIServiceManager()
+//    let APIservice = APIServiceManager()
+    var jokeString: String?
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-        // call APIService to get the joke
         
-        let dictionary = APIservice.getJokes { result in
-            switch result{
-            case .failure(let err):
-                print(err)
-                return
-                
-            case .success(let joke):
-                print(joke)
-            }
-        }
+        configureUI()
+        makeAPICall()
     }
     
     
     // MARK: - Privates
     private func configureUI(){
         actionButton.layer.cornerRadius = 8
-        jokeLabel.text = "Placeholder text here"
+    }
+    
+    private func makeAPICall(){
+        
+        APIServiceManager.shared.getJokes { result in
+            switch result{
+            case .failure(let err):
+                print("Debug: Error in \(err)")
+                return
+                
+            case .success(let joke):
+                
+                self.jokeString = joke
+                
+                guard let jokestring = self.jokeString else {return}
+                
+                DispatchQueue.main.async {
+                    self.jokeLabel.text = jokestring
+                }
+                
+            }
+        }
     }
     
 }

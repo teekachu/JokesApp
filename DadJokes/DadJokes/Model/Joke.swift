@@ -11,6 +11,6 @@ struct Joke: Codable {
     var content: String
     var downvotes: Int
     var id: String
-    var nsfw: Int
+    var nsfw: Bool
     var upvotes: Int
 }

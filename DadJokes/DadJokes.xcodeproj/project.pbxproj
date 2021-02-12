@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A7584FD325D5ACF1003072EE /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7584FD225D5ACF1003072EE /* APIServiceManager.swift */; };
-		A7584FDD25D5D6E5003072EE /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7584FDC25D5D6E5003072EE /* CustomError.swift */; };
 		A7584FE125D62C9D003072EE /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7584FE025D62C9D003072EE /* Joke.swift */; };
+		A7584FE525D65009003072EE /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7584FE425D65009003072EE /* CustomError.swift */; };
 		A75FF8AA25D45D6800A31074 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FF8A925D45D6800A31074 /* AppDelegate.swift */; };
 		A75FF8AC25D45D6800A31074 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FF8AB25D45D6800A31074 /* SceneDelegate.swift */; };
 		A75FF8B325D45D6900A31074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75FF8B225D45D6900A31074 /* Assets.xcassets */; };
@@ -20,8 +20,8 @@
 
 /* Begin PBXFileReference section */
 		A7584FD225D5ACF1003072EE /* APIServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceManager.swift; sourceTree = "<group>"; };
-		A7584FDC25D5D6E5003072EE /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		A7584FE025D62C9D003072EE /* Joke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
+		A7584FE425D65009003072EE /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		A75FF8A625D45D6800A31074 /* DadJokes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DadJokes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A75FF8A925D45D6800A31074 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A75FF8AB25D45D6800A31074 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,8 +54,8 @@
 		A7584FDB25D5D6D5003072EE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A7584FDC25D5D6E5003072EE /* CustomError.swift */,
 				A7584FE025D62C9D003072EE /* Joke.swift */,
+				A7584FE425D65009003072EE /* CustomError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,12 +178,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7584FDD25D5D6E5003072EE /* CustomError.swift in Sources */,
 				A75FF8AA25D45D6800A31074 /* AppDelegate.swift in Sources */,
 				A7584FE125D62C9D003072EE /* Joke.swift in Sources */,
 				A75FF8AC25D45D6800A31074 /* SceneDelegate.swift in Sources */,
 				A7584FD325D5ACF1003072EE /* APIServiceManager.swift in Sources */,
 				A75FF8E225D4602C00A31074 /* MainViewController.swift in Sources */,
+				A7584FE525D65009003072EE /* CustomError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
