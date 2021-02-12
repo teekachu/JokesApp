@@ -1,13 +1,13 @@
 # JokesApp
 
-Why: To practice architectures and familiarize myself with REST API, practice making API calls. 
+Why: To practice MVVM architectures and REST API. 
 
 What: VERY VERY basic jokes app with Zero View, ONE View model and ONE VC. 
 
 How: 
 1. ViewModel is a Singleton, handles logic for making API calls. 
 2. Not using a view because I am using XIB files for UI
-3. VC holds all the other stuff :) 
+3. VC holds all the other stuff that are not logic :) 
 
 Screen Shot:
 
