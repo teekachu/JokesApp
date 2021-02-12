@@ -55,12 +55,19 @@ class APIServiceManager {
                 // no error, proceed
                 
                 do {
-                    let dictionary = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                    // simple way
+                    let dictionary = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String:Any]
+//                    print(dictionary)
+//                    print(dictionary?["content"])
                     
-                    completion(.success(dictionary))
+                    let decodable = try JSONDecoder().decode(Joke.self, from: data!)
+                    print(decodable.content)
+                    
+                
+//                    completion(.success(dictionary?["content"]))
                     
                 } catch {
-                    print("Error parsing response data")
+                    print(error.localizedDescription)
                 }
             }
         }
