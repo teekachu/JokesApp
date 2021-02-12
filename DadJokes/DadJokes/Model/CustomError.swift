@@ -8,8 +8,11 @@
 import Foundation
 
 // New way
-enum GFError: String, Error {
+enum CustomError: String, Error {
     // raw values
+    
+    case invalidDatatask = "Invalid datatask during API call"
+    
     case invalidUsername = "Url created by this username is invalid. Please try again"
     
     case badInternetConnection = "Unable to complete your request. Please check your internet connection"
@@ -19,7 +22,5 @@ enum GFError: String, Error {
     case invalidDataReceived = "Data received from server was invalid, please try again."
     
     case errorJSONParsing = "JSON Parcing was unsuccessful, please try again."
-    
     case urlInvalid = "The url attached to this user is invalid"
-    
 }

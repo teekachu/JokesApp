@@ -9,37 +9,64 @@ import UIKit
 
 class APIServiceManager {
     
+    // MARK: - Properties
     static let shared = APIServiceManager()
     private let baseURL = "https://dad-jokes.p.rapidapi.com"
     
-   
+    let headers = [
+        "x-rapidapi-key": "be6799ce2cmsh9aa44d9c44c0470p1d4553jsn36e752cd40ee",
+        "x-rapidapi-host": "joke3.p.rapidapi.com"
+    ]
     
-    private init() {}
+    // MARK: - Lifecycle
+    public init() {}
     
-    // functions
     
-    func getJokes(completion: @escaping (Result<String, Error>) -> Void){
+    // MARK: - Privates
+    public func getJokes(completion: @escaping (Result<Any, CustomError>) -> Void){
         
+        // 1. SPECIFY HEADER - let headers
         
-        // SPECIFY HEADER
+        // 2. SPECIFY BODY - n/a
         
+        // 3. SET REQUEST TYPE
+        let endpoint = "https://joke3.p.rapidapi.com/v1/joke"
         
-        // SPECIFY BODY
+        // URL REQUEST
+        let request = NSMutableURLRequest(url: NSURL(string: endpoint)! as URL,
+                                          cachePolicy: .useProtocolCachePolicy,
+                                          timeoutInterval: 10.0)
         
-        
-        // SET REQUEST TYPE
-        
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
         
         // GET URLSession
-        
+        let session = URLSession.shared
         
         // CREATE DATA TASK
-        
+        let dataTask = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            // handle error
+            
+            if error != nil && data != nil {
+                completion(.failure(.invalidDatatask))
+                return
+                
+            } else {
+                // no error, proceed
+                
+                do {
+                    let dictionary = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                    
+                    completion(.success(dictionary))
+                    
+                } catch {
+                    print("Error parsing response data")
+                }
+            }
+        }
         
         // FIRE OFF DATATASK
-        
-        
-        
+        dataTask.resume()
     }
     
 }
